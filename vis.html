@@ -22,6 +22,7 @@
 
   <p>
     Create a simple network with some nodes and edges.
+    Gretl Wagner, Ariel Levi, Alexis DLR
   </p>
 
   <div id="mynetwork">
@@ -32,17 +33,52 @@
     // create an array with nodes
     var nodes = new vis.DataSet([{
       id: 1,
-      label: 'Node 1',
+      label: 'Ariel',
     }, {
       id: 2,
-      label: 'Node 2',
-    }, ]);
+      label: 'Alexis',
+    }, {
+      id: 3,
+      label: 'Gretl',
+    }, {
+      id: 4,
+      label: 'Emily',
+    }, {
+      id: 5,
+      label: 'Devin',
+    }, {
+      id: 6,
+      label: 'Justin'
+    }, {
+      id: 7,
+      label: 'Jay'
+    }, {
+      id: 8,
+      label: 'Michael'
+    }
+    ]);
 
     // create an array with edges
     var edges = new vis.DataSet([{
       from: 1,
       to: 2
+    },{
+      from: 3,
+      to: 4
+    },{
+      from: 5,
+      to: 6
+    }, {
+      from: 5,
+      to: 8
+    }, {
+      from: 6,
+      to: 7
     }, ]);
+
+    var connectedEdges = new vis.DataSet([{
+
+    }])
 
     // create a network
     var container = document.getElementById('mynetwork');
@@ -50,8 +86,75 @@
       nodes: nodes,
       edges: edges
     };
-    var options = {};
+    
+
+    // these are all options in full.
+var options = {
+  nodes:{
+
+    color: {
+      border: '#000000',
+      background: '#ff0000',
+      highlight: {
+        border: '#2B7CE9',
+        background: '#D2E5FF'
+      },
+     
+    shape: 'box',
+    shapeProperties: {
+      borderDashes: false, // only for borders
+      borderRadius: 6,     // only for box shape
+      interpolation: false,  // only for image and circularImage shapes
+      useImageSize: false,  // only for image and circularImage shapes
+      useBorderWithImage: false,  // only for image shape
+      coordinateOrigin: 'center'  // only for image and circularImage shapes
+    },
+
+  }
+
+}}
+//network.setOptions(options);
+
+//var options = {};
     var network = new vis.Network(container, data, options);
+    let someNodes = network.getConnectedNodes(1);
+    someNodes.forEach(currNode => {
+      console.log("node ID: " + currNode)
+    })
+
+    var node1 = nodes.get(1);
+    var node2 = nodes.get(2);
+    var node3 = nodes.get(3);
+
+    node1.color = {
+      border: 'orange',
+      background: 'yellow',
+      highlight: {
+        border: 'orange',
+        background: 'yellow'
+      }
+    };
+    node2.color = {
+      border: 'orange',
+      background: 'yellow',
+      highlight: {
+        border: 'orange',
+        background: 'yellow'
+      }
+    };
+
+    node3.color = {
+      border: 'orange',
+      background: 'yellow',
+      highlight: {
+        border: 'orange',
+        background: 'yellow'
+      }
+    };
+
+      nodes.update(node1);
+      nodes.update(node2);
+      nodes.update(node3);
   </script>
 
 
